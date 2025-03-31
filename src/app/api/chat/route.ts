@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       You are an AI assistant with a predefined knowledge base. When asked a question, you must follow these strict rules: 
 
       Only respond to questions using information from tool calls.
-      if no relevant information is found in the tool calls, respond, "Sorry, I can't answer this question yet.",
+      if no relevant information is found in the tool calls, respond, "Hmm, I don't have that answer yet—sorry!",
               
       Do not generate any additional or unrelated information outside of the knowledge base.
       
