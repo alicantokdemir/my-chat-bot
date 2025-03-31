@@ -19,9 +19,6 @@ COPY . .
 # Remove .env.local file if it exists
 RUN rm -f .env.local
 
-# Copy the .env.production file to the working directory in the container
-COPY .env.production .env
-
 # Build the project (typically used for building front-end assets)
 RUN npm run build
 
