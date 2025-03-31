@@ -1,0 +1,31 @@
+# Use Docker Compose file format version 3.9
+version: "3.9"
+
+services:
+  # Define the service named 'app'
+  app:
+    # Build the Docker image using the Dockerfile in the current directory
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Name the container 'nextjs-container'
+    container_name: nextjs-container
+    # Map port 3000 on the host to port 3000 in the container
+    ports:
+      - "3000:3000"
+    # Avoid mounting node_modules from the host to the container
+    volumes:
+      - /app/node_modules
+  db:
+    image: pgvector/pgvector:pg17
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: example
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  postgres:
